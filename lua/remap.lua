@@ -13,3 +13,11 @@ local api = require("nvim-tree.api")
 
 vim.keymap.set('n',
   '<leader>e', api.tree.open, { desc = 'Open NvimTree' })
+
+local lsp_signature = require("lsp_signature")
+vim.keymap.set('i', 
+  '<c-e>', function() lsp_signature.toggle_float_win() end, { desc = "LSP Signature Toggle" })
+
+local snacks = require("snacks")
+vim.keymap.set('t',
+  '<c-_>', function() snacks.terminal.toggle() end, { desc = "Toggle Terminal" })

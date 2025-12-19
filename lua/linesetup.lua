@@ -53,6 +53,8 @@ require('lualine').setup {
   extensions = {}
 }
 
-require("bufferline").setup {
-
-}
+require("bufferline").setup({
+    options = {
+        separator_style = "thick"
+    }
+})

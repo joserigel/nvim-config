@@ -20,7 +20,15 @@ end
 
 -- pass to setup along with your other options
 require("nvim-tree").setup {
-  ---
-  on_attach = my_on_attach,
-  ---
+    filters = {
+        enable = true,
+        git_ignored = false,
+        dotfiles = false,
+        git_clean = false,
+        no_buffer = false,
+        no_bookmark = false,
+        custom = {},
+        exclude = {},
+      },
+    on_attach = my_on_attach,
 }
