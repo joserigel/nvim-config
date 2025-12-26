@@ -106,7 +106,11 @@ vim.lsp.enable("pyright")
 
 vim.lsp.config["clangd"] = {
   capabilities = lsp_capabilities,
-  cmd = { "clangd", "--background-index" }
+  cmd = {
+      "clangd",
+      "--header-insertion=never",
+      "--function-arg-placeholders=0"
+  }
 }
 vim.lsp.enable("clangd")
 
