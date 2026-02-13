@@ -3,10 +3,10 @@ if vim.g.vscode then
 else
     -- ordinary Neovim
     require("config.lazy")
+    require("nvimtree")
+    require("treesitter")
     require("set")
     require("remap")
-    require("treesitter")
-    require("nvimtree")
     require("linesetup")
     require("lsp")
     require("git")

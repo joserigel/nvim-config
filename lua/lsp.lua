@@ -114,6 +114,14 @@ vim.lsp.config["clangd"] = {
 }
 vim.lsp.enable("clangd")
 
+-- Tired of asm-lsp not working, at
+-- some point I 'might' fix this
+vim.lsp.config["asm_lsp"] = {
+  capabilities = nil,
+  cmd = {}
+}
+vim.lsp.enable("asm_lsp")
+
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = function()
