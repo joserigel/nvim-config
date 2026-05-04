@@ -95,13 +95,11 @@ vim.lsp.config["lua_ls"] = {
 }
 vim.lsp.enable("lua_ls")
 
-vim.lsp.enable("ts_ls")
 
 vim.lsp.config["pyright"] = {
   capabilities = lsp_capabilities
 }
 vim.lsp.enable("pyright")
-
 
 
 vim.lsp.config["clangd"] = {
@@ -191,3 +189,28 @@ sign({name = 'DiagnosticSignError', text = '✘'})
 sign({name = 'DiagnosticSignWarn', text = '▲'})
 sign({name = 'DiagnosticSignHint', text = '⚑'})
 sign({name = 'DiagnosticSignInfo', text = '»'})
+
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'vue',
+  callback = function(args)
+    local root_dir = vim.fs.root(args.buf, { 'package.json', 'tsconfig.json', 'jsconfig.json' })
+
+    -- Copy init_options from servers table
+    local init_options = vim.deepcopy(servers.ts_ls.init_options)
+
+    -- Ensure plugin location is set
+    local mason_path = vim.fn.stdpath('data') .. '/mason/packages/vue-language-server/node_modules/@vue/language-server'
+    if vim.fn.isdirectory(mason_path) == 1 then
+      init_options.plugins[1].location = mason_path
+    end
+
+    vim.lsp.start({
+      name = 'ts_ls',
+      cmd = { 'typescript-language-server', '--stdio' },
+      root_dir = root_dir,
+      init_options = init_options,
+      capabilities = capabilities, -- Should be defined earlier in your config
+    })
+  end,
+})

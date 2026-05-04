@@ -6,6 +6,11 @@ return {
     opts = {},
   },
   {
+   "navarasu/onedark.nvim",
+    priority = 1000,
+    opts = {}
+  }, 
+  {
     "sindrets/diffview.nvim",
     opts = {
     }
