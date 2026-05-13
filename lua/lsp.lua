@@ -1,5 +1,9 @@
 local lsp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+
+-- Disable inlay_hint, who thought of this cancer?
+vim.lsp.inlay_hint.enable(false)
+
 -- Snippets
 require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -94,6 +98,9 @@ vim.lsp.config["lua_ls"] = {
   capabilities = lsp_capabilities
 }
 vim.lsp.enable("lua_ls")
+
+-- Golang
+require('go').setup()
 
 
 vim.lsp.config["pyright"] = {
